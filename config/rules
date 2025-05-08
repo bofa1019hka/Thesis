@@ -1,10 +1,60 @@
-Attribute:
+VALIDATION_RULES:
+    companyID
+    siteID
+    siteAreaID
+    connectorId - Min: 2 und Max: 3 - In den Daten sind nur diese vorhanden
+    tagID
+    carID
+    carCatalogID
+    userID
+    chargeBoxID - Min: 1 und Max: 26 - In den Daten sind nur diese vorhanden
+    meterStart - Min: 1 - Zählerstand sollte nicht 0 sein
+    timestamp
+    stateOfCharge - Min: 0 und Max: 100 - Batterie kann nur zwischen 0% und 100% sein
+    phasesUsed.csPhase1
+    phasesUsed.csPhase2
+    phasesUsed.csPhase3
+    stop.userID
+    stop.timestamp
+    stop.tagID
+    stop.meterStop - Min: 1 - Zählerstand sollte nicht 0 sein
+    stop.reason
+    stop.stateOfCharge - Min: 0 und Max: 100 - Batterie kann nur zwischen 0% und 100% sein
+    stop.totalConsumptionWh - Min: 1 und Max 120.000 - Es sollte etwas geladen haben und die derzeit maximale Batteriegröße benötigt 120.000 WH um vollzuladen
+    stop.totalInactivitySecs - Max: 604.800 - Das Fahrzeug steht maximal eine Woche inaktiv an der Ladesäule
+    stop.totalDurationSecs - Min: 1 und Max: 604.800 - Der Ladevorgang sollte gestartet worden sein sowie maximal eine Woche an der Ladesäule dauern
 
-required
-alphanumeric
-numeric
-bool
-iso_timestamp
-length
-min
-max
+FIELDS_TO_DROP:
+    Diese preisbezogenen Attribute wurden entfernt, da ein Stromverkauf in einem privaten Unternehmenskontext nicht zulässig ist
+        price
+        roundedPrice
+        priceUnit
+        pricingSource
+        stop.price
+        stop.roundedPrice
+        stop.priceUnit
+        stop.pricingSource
+        billingData
+
+    Diese Felder betreffen kostenpflichtige Zusatzzeiten nach der Karenzzeit. Da dies ebenso unzulässig ist werden sie entfernt
+        stop.extraInactivitySecs
+        stop.extraInactivityComputed
+        stop.inactivityStatus
+
+    Diese Metainformationen wurden entfernt, da sie entweder immer den gleichen Wert haben oder andere nicht relevante Informationen enthalten
+        issuer
+        timezone
+        migrationTag
+        stop.transactionData
+        signedData
+        stop.signedData
+        remotestop
+
+Attribute:
+    required
+    alphanumeric
+    numeric
+    bool
+    length
+    min
+    max

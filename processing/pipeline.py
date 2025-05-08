@@ -1,4 +1,4 @@
-from config.rules import (LIMITS, FIELDS_TO_DROP, VALUE_COMPLETION)
+from config.rules import (VALIDATION_RULES, FIELDS_TO_DROP, VALUE_COMPLETION)
 from processing.cleanup import drop_fields
 from processing.completion.dynamic_loader import apply_imputation
 from processing.validation import validate_dataset
@@ -13,8 +13,8 @@ def run_pipeline(limit=None):
     print("\tFelder entfernen")
     data = drop_fields(data, FIELDS_TO_DROP)
 
-    # print("\tDaten validieren davor")
-    # data = validate_dataset(data, LIMITS)
+    print("\tDaten validieren davor")
+    data = validate_dataset(data, VALIDATION_RULES)
 
     # print("\tWerte ergänzen")
     # data = apply_imputation(data, VALUE_COMPLETION)

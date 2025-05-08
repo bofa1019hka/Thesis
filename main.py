@@ -4,7 +4,7 @@ from processing.pipeline import run_pipeline
 def main():
     print("Pipeline starten")
 
-    data = run_pipeline(limit=100)
+    data = run_pipeline(limit=3)
 
     print("Pipeline abgeschlossen")
 
