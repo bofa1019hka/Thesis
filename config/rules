@@ -1,0 +1,10 @@
+Attribute:
+
+required
+alphanumeric
+numeric
+bool
+iso_timestamp
+length
+min
+max
